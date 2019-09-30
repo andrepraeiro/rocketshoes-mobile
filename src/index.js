@@ -1,14 +1,10 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 
 import './config/ReactotronConfig';
+import Routes from './routes';
 
 const App = () => {
-  return (
-    <View>
-      <Text>Limpo</Text>
-    </View>
-  );
+  return <Routes />;
 };
 
 export default App;
