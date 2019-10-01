@@ -1,8 +1,11 @@
+import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
 import Main from './pages/Main';
 import Cart from './pages/Cart';
+
+import Header from './components/Header';
 
 const Routes = createAppContainer(
   createStackNavigator(
@@ -11,21 +14,14 @@ const Routes = createAppContainer(
       Cart,
     },
     {
-      headerMode: 'none',
-      navigationOptions: {
-        headerVisible: false,
-      },
+      // headerMode: 'none',
+      // navigationOptions: {
+      //   headerVisible: false,
+      // },
+      defaultNavigationOptions: navigation => ({
+        header: <Header {...navigation} />,
+      }),
     }
-    // {
-    //   headerLayoutPreset: 'center',
-    //   headerBackTitleVisible: false,
-    //   defaultNavigationOptions: {
-    //     headerStyle: {
-    //       backgroundColor: '#7159c1',
-    //     },
-    //     headerTintColor: '#fff',
-    //   },
-    // }
   )
 );
 

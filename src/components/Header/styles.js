@@ -1,32 +1,35 @@
 import styled from 'styled-components/native';
-// import {MdShoppingBasket} from 'react-icons/md';
 
 export const Container = styled.View`
   background: #000;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  padding: 15px;
+  padding: 3px;
 `;
-export const Logo = styled.Image``;
+export const Logo = styled.Image.attrs({
+  resizeMode: 'cover',
+})`
+  width: 200px;
+  height: 26px;
+`;
 
-export const Cart = styled.View`
-  align-items: center;
+export const Cart = styled.TouchableOpacity`
+  align-items: flex-end;
+  padding: 0 5px;
 `;
-export const CartText = styled.View`
-  text-align: right;
-  margin-right: 10px;
-`;
-export const CartTitle = styled.Text`
-  text-align: right;
+
+export const Counter = styled.Text`
+  position: absolute;
+  text-align: center;
+  line-height: 14px;
+  top: -3px;
+  right: 2px;
+  padding: 2px;
+  height: 18px;
+  width: 18px;
   color: #fff;
-`;
-export const CartAmount = styled.Text`
-  text-align: right;
-  color: #999;
+  background: #7159c1;
   font-size: 12px;
-`;
-export const Icon = styled.Text`
-  color: #fff;
+  border-radius: 10px;
 `;

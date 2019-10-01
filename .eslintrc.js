@@ -24,5 +24,6 @@ module.exports = {
     'react/state-in-constructor': 'off',
     'react/static-property-placement': 'off',
     'react/jsx-props-no-spreading': 0,
+    'no-console': ['error', {allow: ['tron']}],
   },
 };

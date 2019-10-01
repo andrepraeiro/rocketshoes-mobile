@@ -1,27 +1,17 @@
 import React from 'react';
 
-import {
-  Container,
-  Logo,
-  Cart,
-  CartText,
-  CartTitle,
-  CartAmount,
-  Icon,
-} from './styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {Container, Logo, Cart, Counter} from './styles';
 
 import LogoImg from '../../assets/images/logo.png';
 
-export default function Header() {
+export default function Header({navigation}) {
   return (
     <Container>
       <Logo source={LogoImg} alt="Rocketshoes" />
-      <Cart>
-        <CartText>
-          <CartTitle>Meu Carrinho</CartTitle>
-          <CartAmount>2 Itens</CartAmount>
-        </CartText>
-        <Icon size={36} color="#fff" />
+      <Cart onPress={() => navigation.navigate('Cart')}>
+        <Icon name="shopping-basket" size={36} color="#fff" />
+        <Counter>1</Counter>
       </Cart>
     </Container>
   );
