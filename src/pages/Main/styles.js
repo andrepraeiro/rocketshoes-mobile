@@ -8,6 +8,8 @@ export const Container = styled.View`
 `;
 
 export const Card = styled.View`
+  flex-direction: column;
+  justify-content: space-between;
   background: #fff;
   border-radius: 4px;
   padding: 5px;
