@@ -63,7 +63,7 @@ export const TotalLine = styled.View`
   margin: 30px 0;
 `;
 export const TotalTitle = styled.Text`
-  font-size: 18px
+  font-size: 18px;
   color: #666;
 `;
 export const Total = styled.Text`
@@ -82,3 +82,5 @@ export const AmountControl = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
+
+export const Product = styled.View``;
