@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import {connect} from 'react-redux';
+
 import {formatPrice} from '../../utils/format';
 
 import api from '../../services/api';
@@ -33,13 +35,22 @@ class Main extends Component {
     this.setState({products: data});
   }
 
+  handleAddProduct = product => {
+    const {dispatch} = this.props;
+
+    dispatch({
+      type: 'ADD_TO_CART',
+      product,
+    });
+  };
+
   renderProduct = ({item}) => {
     return (
       <Card>
         <Image source={{uri: item.image}} />
         <Name>{item.title}</Name>
         <Price>{item.priceFormatted}</Price>
-        <Button>
+        <Button onPress={() => this.handleAddProduct(item)}>
           <ItemAmount>
             <Icon name="add-shopping-cart" color="#fff" size={20} />
             <ItemAmountText>0</ItemAmountText>
@@ -69,4 +80,4 @@ Main.navigationOptions = {
   title: 'Rocketshoes',
 };
 
-export default Main;
+export default connect()(Main);
