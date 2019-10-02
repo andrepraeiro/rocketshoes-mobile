@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import {
   Container,
   ProductLine,
@@ -35,13 +37,19 @@ export default function Cart() {
             <Name>Tênis de Caminhada Leve Confortável</Name>
             <Price>R$ 179,90</Price>
           </NamePrice>
-          <RemoveButton>X</RemoveButton>
+          <RemoveButton>
+            <Icon name="delete-forever" size={24} color="#7159c1" />
+          </RemoveButton>
         </ProductLine>
         <AmountLine>
           <AmountControl>
-            <DecButton>-</DecButton>
+            <DecButton>
+              <Icon name="remove-circle-outline" size={20} color="#7159c1" />
+            </DecButton>
             <Amount>10</Amount>
-            <AddButton>+</AddButton>
+            <AddButton>
+              <Icon name="add-circle-outline" size={20} color="#7159c1" />
+            </AddButton>
           </AmountControl>
           <Subtotal>R$ 1.790,90</Subtotal>
         </AmountLine>

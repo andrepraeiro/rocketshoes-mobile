@@ -9,25 +9,32 @@ export const Container = styled.View`
 
 export const Card = styled.View`
   flex-direction: column;
-  justify-content: space-between;
   background: #fff;
   border-radius: 4px;
-  padding: 5px;
+  padding: 1px;
   margin: 0 15px;
-  width: 200px;
-  height: 90%;
+  width: 270px;
+  flex: 1;
 `;
-export const Image = styled.Image`
-  height: 50%;
-  width: 100%;
+export const Image = styled.Image.attrs({
+  resizeMode: 'contain',
+})`
+  width: 270px;
+  flex: 1;
+  align-self: center;
 `;
-export const Name = styled.Text`
-  font-size: 12px;
-  margin-bottom: auto;
+export const Name = styled.Text.attrs({
+  numberOfLines: 2,
+})`
+  font-size: 14px;
+  height: 38px;
+  padding: 0 5px;
 `;
 export const Price = styled.Text`
   font-size: 18px;
   font-weight: bold;
+  text-align: right;
+  padding: 0 5px;
 `;
 export const Button = styled.TouchableOpacity`
   background: #7159c1;

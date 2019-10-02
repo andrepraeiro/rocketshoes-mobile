@@ -25,7 +25,13 @@ export const Name = styled.Text`
 export const Price = styled.Text`
   font-weight: bold;
 `;
-export const RemoveButton = styled.Text``;
+export const RemoveButton = styled.TouchableOpacity`
+  background: #ddd;
+  border-radius: 20px;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+`;
 export const AmountLine = styled.View`
   flex-direction: row;
   justify-content: space-between;
@@ -34,21 +40,27 @@ export const AmountLine = styled.View`
   padding: 10px 0;
   margin: 5px 0;
 `;
-export const DecButton = styled.Text``;
+export const DecButton = styled.TouchableOpacity`
+  padding: 0 5px;
+`;
 export const Amount = styled.Text`
   border: 1px solid #eee;
   background: #fff;
+  width: 50px;
 `;
-export const AddButton = styled.Text``;
+export const AddButton = styled.TouchableOpacity`
+  padding: 0 5px;
+`;
 export const Subtotal = styled.Text`
   font-weight: bold;
   font-size: 14px;
+  padding: 0 10px;
 `;
 export const TotalLine = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  margin: 30px 0;
 `;
 export const TotalTitle = styled.Text`
   font-size: 18px
