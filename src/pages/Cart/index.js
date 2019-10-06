@@ -24,7 +24,7 @@ import {
   Product,
 } from './styles';
 
-function Cart({cart}) {
+function Cart({cart, dispatch}) {
   console.tron.log(cart);
   return (
     <Container>
@@ -42,7 +42,10 @@ function Cart({cart}) {
                   <Name>{product.title}</Name>
                   <Price>{product.priceFormatted}</Price>
                 </NamePrice>
-                <RemoveButton>
+                <RemoveButton
+                  onPress={() =>
+                    dispatch({type: 'REMOVE_FROM_CART', id: product.id})
+                  }>
                   <Icon name="delete-forever" size={24} color="#7159c1" />
                 </RemoveButton>
               </ProductLine>
