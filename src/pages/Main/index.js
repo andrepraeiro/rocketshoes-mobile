@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {bindActionCreators} from 'redux';
 
 import {connect} from 'react-redux';
 
@@ -20,6 +21,8 @@ import {
   ItemAmountText,
 } from './styles';
 
+import * as CarActions from '../../store/modules/cart/actions';
+
 class Main extends Component {
   state = {
     products: [],
@@ -36,12 +39,9 @@ class Main extends Component {
   }
 
   handleAddProduct = product => {
-    const {dispatch} = this.props;
+    const {addToCart} = this.props;
 
-    dispatch({
-      type: 'ADD_TO_CART',
-      product,
-    });
+    addToCart(product);
   };
 
   renderProduct = ({item}) => {
@@ -80,4 +80,9 @@ Main.navigationOptions = {
   title: 'Rocketshoes',
 };
 
-export default connect()(Main);
+const mapDispatchToProps = dispatch => bindActionCreators(CarActions, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Main);
