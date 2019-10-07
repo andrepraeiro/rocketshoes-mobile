@@ -25,9 +25,10 @@ import {
   Product,
 } from './styles';
 
+import {formatPrice} from '../../utils/format';
 import * as CarActions from '../../store/modules/cart/actions';
 
-function Cart({cart, removeFromCart, updateAmount}) {
+function Cart({cart, removeFromCart, updateAmount, total}) {
   const handleDecrementAmount = product => {
     updateAmount(product.id, product.amount - 1);
   };
@@ -70,7 +71,7 @@ function Cart({cart, removeFromCart, updateAmount}) {
                     <Icon name="add-circle-outline" size={20} color="#7159c1" />
                   </AddButton>
                 </AmountControl>
-                <Subtotal>R$ 1.790,90</Subtotal>
+                <Subtotal>{product.subtotal}</Subtotal>
               </AmountLine>
             </Product>
           </>
@@ -78,7 +79,7 @@ function Cart({cart, removeFromCart, updateAmount}) {
 
         <TotalLine>
           <TotalTitle>Total</TotalTitle>
-          <Total>R$ 1.790,90</Total>
+          <Total>{total}</Total>
         </TotalLine>
       </Card>
     </Container>
@@ -86,7 +87,15 @@ function Cart({cart, removeFromCart, updateAmount}) {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart,
+  cart: state.cart.map(product => ({
+    ...product,
+    subtotal: formatPrice(product.price * product.amount),
+  })),
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return total + product.price * product.amount;
+    }, 0)
+  ),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(CarActions, dispatch);
