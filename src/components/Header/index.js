@@ -4,14 +4,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {Container, Logo, Cart, Counter} from './styles';
+import {Container, Logo, LogoImage, Cart, Counter} from './styles';
 
 import LogoImg from '../../assets/images/logo.png';
 
 function Header({navigation, cartSize}) {
   return (
     <Container>
-      <Logo source={LogoImg} alt="Rocketshoes" />
+      <Logo onPress={() => navigation.navigate('Main')}>
+        <LogoImage source={LogoImg} alt="Rocketshoes" />
+      </Logo>
       <Cart onPress={() => navigation.navigate('Cart')}>
         <Icon name="shopping-basket" size={36} color="#fff" />
         <Counter>{cartSize}</Counter>
@@ -21,8 +23,10 @@ function Header({navigation, cartSize}) {
 }
 
 Header.propTypes = {
-  navigation: PropTypes.element.isRequired,
-  navigate: PropTypes.func.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+
   cartSize: PropTypes.number.isRequired,
 };
 

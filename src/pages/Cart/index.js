@@ -106,12 +106,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators(CarActions, dispatch);
 
 Cart.propTypes = {
-  cart: PropTypes.shape({
-    id: PropTypes.number,
-  }).isRequired,
+  cart: PropTypes.arrayOf(PropTypes.object),
   removeFromCart: PropTypes.func.isRequired,
   updateAmountRequest: PropTypes.func.isRequired,
-  total: PropTypes.number.isRequired,
+  total: PropTypes.string.isRequired,
   item: PropTypes.shape({
     id: PropTypes.number,
     image: PropTypes.object,
@@ -119,7 +117,12 @@ Cart.propTypes = {
     priceFormatted: PropTypes.string,
     amount: PropTypes.number,
     subtotal: PropTypes.string,
-  }).isRequired,
+  }),
+};
+
+Cart.defaultProps = {
+  cart: [],
+  item: {},
 };
 
 export default connect(

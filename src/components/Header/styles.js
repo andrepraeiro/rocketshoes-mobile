@@ -7,11 +7,15 @@ export const Container = styled.View`
   align-items: center;
   padding: 3px;
 `;
-export const Logo = styled.Image.attrs({
+
+export const Logo = styled.TouchableOpacity`
+  margin: 0 15px;
+`;
+
+export const LogoImage = styled.Image.attrs({
   resizeMode: 'cover',
 })`
-  width: 200px;
-  height: 26px;
+  padding: 0 5px;
 `;
 
 export const Cart = styled.TouchableOpacity`

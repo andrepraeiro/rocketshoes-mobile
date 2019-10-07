@@ -83,7 +83,7 @@ Main.navigationOptions = {
 };
 
 Main.propTypes = {
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.objectOf(PropTypes.number).isRequired,
   addToCartRequest: PropTypes.func.isRequired,
 };
 
