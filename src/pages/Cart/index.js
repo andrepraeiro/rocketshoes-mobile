@@ -23,6 +23,7 @@ import {
   Card,
   AmountControl,
   Product,
+  ProductList,
 } from './styles';
 
 import {formatPrice} from '../../utils/format';
@@ -37,45 +38,48 @@ function Cart({cart, removeFromCart, updateAmount, total}) {
     updateAmount(product.id, product.amount + 1);
   };
 
+  const renderProduct = ({item}) => {
+    return (
+      <Product>
+        <ProductLine>
+          <Image
+            source={{
+              uri: item.image,
+            }}
+          />
+          <NamePrice>
+            <Name>{item.title}</Name>
+            <Price>{item.priceFormatted}</Price>
+          </NamePrice>
+          <RemoveButton onPress={() => removeFromCart(item.id)}>
+            <Icon name="delete-forever" size={24} color="#7159c1" />
+          </RemoveButton>
+        </ProductLine>
+        <AmountLine>
+          <AmountControl>
+            <DecButton onPress={() => handleDecrementAmount(item)}>
+              <Icon name="remove-circle-outline" size={20} color="#7159c1" />
+            </DecButton>
+            <Amount>{item.amount}</Amount>
+            <AddButton onPress={() => handleIncrementAmount(item)}>
+              <Icon name="add-circle-outline" size={20} color="#7159c1" />
+            </AddButton>
+          </AmountControl>
+          <Subtotal>{item.subtotal}</Subtotal>
+        </AmountLine>
+      </Product>
+    );
+  };
+
   return (
     <Container>
       <Card>
-        {cart.map(product => (
-          <>
-            <Product key={product.id}>
-              <ProductLine>
-                <Image
-                  source={{
-                    uri: product.image,
-                  }}
-                />
-                <NamePrice>
-                  <Name>{product.title}</Name>
-                  <Price>{product.priceFormatted}</Price>
-                </NamePrice>
-                <RemoveButton onPress={() => removeFromCart(product.id)}>
-                  <Icon name="delete-forever" size={24} color="#7159c1" />
-                </RemoveButton>
-              </ProductLine>
-              <AmountLine>
-                <AmountControl>
-                  <DecButton onPress={() => handleDecrementAmount(product)}>
-                    <Icon
-                      name="remove-circle-outline"
-                      size={20}
-                      color="#7159c1"
-                    />
-                  </DecButton>
-                  <Amount>{product.amount}</Amount>
-                  <AddButton onPress={() => handleIncrementAmount(product)}>
-                    <Icon name="add-circle-outline" size={20} color="#7159c1" />
-                  </AddButton>
-                </AmountControl>
-                <Subtotal>{product.subtotal}</Subtotal>
-              </AmountLine>
-            </Product>
-          </>
-        ))}
+        <ProductList
+          vertical
+          data={cart}
+          keyExtractor={item => String(item.id)}
+          renderItem={renderProduct}
+        />
 
         <TotalLine>
           <TotalTitle>Total</TotalTitle>

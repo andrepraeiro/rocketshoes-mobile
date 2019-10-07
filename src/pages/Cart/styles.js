@@ -57,6 +57,7 @@ export const Subtotal = styled.Text`
   padding: 0 10px;
 `;
 export const TotalLine = styled.View`
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -72,6 +73,7 @@ export const Total = styled.Text`
 `;
 
 export const Card = styled.View`
+  flex: 1;
   background: #fff;
   border-radius: 4px;
   padding: 15px;
@@ -84,3 +86,7 @@ export const AmountControl = styled.View`
 `;
 
 export const Product = styled.View``;
+
+export const ProductList = styled.FlatList`
+  flex: 200;
+`;
