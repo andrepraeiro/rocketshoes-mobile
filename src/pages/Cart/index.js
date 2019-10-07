@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -103,6 +104,23 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(CarActions, dispatch);
+
+Cart.propTypes = {
+  cart: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+  updateAmountRequest: PropTypes.func.isRequired,
+  total: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    id: PropTypes.number,
+    image: PropTypes.object,
+    title: PropTypes.string,
+    priceFormatted: PropTypes.string,
+    amount: PropTypes.number,
+    subtotal: PropTypes.string,
+  }).isRequired,
+};
 
 export default connect(
   mapStateToProps,
