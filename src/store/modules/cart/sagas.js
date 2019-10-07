@@ -4,7 +4,9 @@ import {call, put, select, all, takeLatest} from 'redux-saga/effects';
 import api from '../../../services/api';
 import {formatPrice} from '../../../utils/format';
 
-import {addToCartSuccess, updateAmount} from './actions';
+import {addToCartSuccess, updateAmountSuccess} from './actions';
+
+import * as NavigationService from '../../services/navigationService';
 
 function* addtoCart({id}) {
   const productExists = yield select(state =>
@@ -26,7 +28,7 @@ function* addtoCart({id}) {
   }
 
   if (productExists) {
-    yield put(updateAmount(id, amount));
+    yield put(updateAmountSuccess(id, amount));
   } else {
     const response = yield call(api.get, `/products/${id}`);
     const data = {
@@ -36,7 +38,27 @@ function* addtoCart({id}) {
     };
 
     yield put(addToCartSuccess(data));
+    NavigationService.navigate('Cart');
   }
 }
 
-export default all([takeLatest('@cart/ADD_REQUEST', addtoCart)]);
+function* updateAmount({id, amount}) {
+  if (amount <= 0) return;
+  const stock = yield call(api.get, `stock/${id}`);
+  const stockAmount = stock.data.amount;
+
+  if (amount > stockAmount) {
+    Alert.alert(
+      'Produto sem estoque',
+      'Não há estoque disponível para esse produto.'
+    );
+    return;
+  }
+
+  yield put(updateAmountSuccess(id, amount));
+}
+
+export default all([
+  takeLatest('@cart/ADD_REQUEST', addtoCart),
+  takeLatest('@cart/UPDATE_AMOUNT_REQUEST', updateAmount),
+]);

@@ -29,13 +29,13 @@ import {
 import {formatPrice} from '../../utils/format';
 import * as CarActions from '../../store/modules/cart/actions';
 
-function Cart({cart, removeFromCart, updateAmount, total}) {
+function Cart({cart, removeFromCart, updateAmountRequest, total}) {
   const handleDecrementAmount = product => {
-    updateAmount(product.id, product.amount - 1);
+    updateAmountRequest(product.id, product.amount - 1);
   };
 
   const handleIncrementAmount = product => {
-    updateAmount(product.id, product.amount + 1);
+    updateAmountRequest(product.id, product.amount + 1);
   };
 
   const renderProduct = ({item}) => {
