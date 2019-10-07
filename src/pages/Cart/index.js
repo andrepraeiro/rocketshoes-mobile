@@ -27,8 +27,15 @@ import {
 
 import * as CarActions from '../../store/modules/cart/actions';
 
-function Cart({cart, removeFromCart}) {
-  console.tron.log(cart);
+function Cart({cart, removeFromCart, updateAmount}) {
+  const handleDecrementAmount = product => {
+    updateAmount(product.id, product.amount - 1);
+  };
+
+  const handleIncrementAmount = product => {
+    updateAmount(product.id, product.amount + 1);
+  };
+
   return (
     <Container>
       <Card>
@@ -51,7 +58,7 @@ function Cart({cart, removeFromCart}) {
               </ProductLine>
               <AmountLine>
                 <AmountControl>
-                  <DecButton>
+                  <DecButton onPress={() => handleDecrementAmount(product)}>
                     <Icon
                       name="remove-circle-outline"
                       size={20}
@@ -59,7 +66,7 @@ function Cart({cart, removeFromCart}) {
                     />
                   </DecButton>
                   <Amount>{product.amount}</Amount>
-                  <AddButton>
+                  <AddButton onPress={() => handleIncrementAmount(product)}>
                     <Icon name="add-circle-outline" size={20} color="#7159c1" />
                   </AddButton>
                 </AmountControl>
