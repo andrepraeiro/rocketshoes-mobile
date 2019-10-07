@@ -45,6 +45,7 @@ class Main extends Component {
   };
 
   renderProduct = ({item}) => {
+    const {amount} = this.props;
     return (
       <Card>
         <Image source={{uri: item.image}} />
@@ -53,7 +54,7 @@ class Main extends Component {
         <Button onPress={() => this.handleAddProduct(item)}>
           <ItemAmount>
             <Icon name="add-shopping-cart" color="#fff" size={20} />
-            <ItemAmountText>0</ItemAmountText>
+            <ItemAmountText>{amount[item.id]}</ItemAmountText>
           </ItemAmount>
           <ButtonText>Adicionar</ButtonText>
         </Button>
@@ -80,9 +81,16 @@ Main.navigationOptions = {
   title: 'Rocketshoes',
 };
 
+const mapStateToProps = state => ({
+  amount: state.cart.reduce((amount, product) => {
+    amount[product.id] = product.amount;
+    return amount;
+  }, {}),
+});
+
 const mapDispatchToProps = dispatch => bindActionCreators(CarActions, dispatch);
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Main);
